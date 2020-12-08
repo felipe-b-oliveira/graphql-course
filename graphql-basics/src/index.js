@@ -29,22 +29,26 @@ const posts = [{
   id: '101',
   title: 'Happy New Year',
   body: 'A great new year awaits for us',
-  published: true
+  published: true,
+  author: '1'
 }, {
   id: '102',
   title: 'Christimas comes',
   body: 'I love christmas lights',
-  published: true
+  published: true,
+  author: '1'
 }, {
   id: '103',
   title: 'The summer has come',
   body: 'I love swimming in a hot summer day',
-  published: true
+  published: true,
+  author: '2'
 }, {
   id: '104',
   title: 'I loves holidays',
   body: 'Break up from the rotine',
-  published: false
+  published: false,
+  author: '3'
 }
 ]
 
@@ -62,6 +66,7 @@ const typeDefs = `
     name: String!
     email: String!
     age: Int
+    posts: [Post!]!
   }
 
   type Post {
@@ -69,6 +74,7 @@ const typeDefs = `
     title: String!
     body: String!
     published: Boolean!
+    author: User!
   }
 `
 
@@ -92,7 +98,6 @@ const resolvers = {
       return posts.filter((post) => {
         const isTitle = post.title.toLowerCase().includes(args.query.toLowerCase())
         const isBody = post.body.toLowerCase().includes(args.query.toLowerCase())
-
         return isTitle || isBody;
       })
     },
@@ -111,6 +116,20 @@ const resolvers = {
         body: 'I love December feels',
         published: true
       }
+    }
+  },
+  Post: {
+    author(parent, args, ctx, info) {
+      return users.find((user) => {
+        return user.id === parent.author
+      })
+    }
+  }, 
+  User: {
+    posts(parent, args, ctx, info) {
+      return posts.filter((post) => {
+        return post.author === parent.id
+      })
     }
   }
 }
