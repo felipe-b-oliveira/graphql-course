@@ -1,4 +1,4 @@
-import uuidv4 from 'uuid/v4';
+import uuidv4 from "uuid/v4";
 
 const Mutation = {
   createUser(parent, args, { db }, info) {
@@ -40,6 +40,34 @@ const Mutation = {
 
     return deletedUsers[0];
   },
+  updateUser(parent, args, { db }, info) {
+    //Example of use of desctructuring the args parameter
+    const { id, data } = args;
+    const user = db.users.find((user) => user.id === id)
+
+    if (!user) {
+      throw new Error("User not found");
+    }
+
+    if (typeof data.email === 'string') {
+      const emailTaken = db.users.some((user) => user.email === data.email)
+
+      if (emailTaken) {
+        throw new Error("Email taken")
+      }
+      user.email = data.email
+    }
+
+    if (typeof data.name === 'string') {
+      user.name = data.name
+    }
+
+    if (typeof data.age !== 'undefined') {
+      user.age = data.age
+    }
+
+    return user
+  },
   createPost(parent, args, { db }, info) {
     const userExists = db.users.some((user) => user.id === args.data.author);
 
@@ -68,6 +96,27 @@ const Mutation = {
     db.comments = db.comments.filter((comment) => comment.post !== args.id);
 
     return deletedPosts[0];
+  },
+  updatePost(parent, args, { db }, info) {
+    const post = db.posts.find((post) => post.id === args.id)
+
+    if (!post) {
+      throw new Error("Post not found");
+    }
+
+    if (typeof args.data.title === 'string') {
+      post.title = args.data.title
+    }
+
+    if (typeof args.data.body === 'string') {
+      post.body = args.data.body
+    }
+
+    if (typeof args.data.published === 'boolean') {
+      post.published = args.data.published
+    }
+
+    return post
   },
   createComment(parent, args, { db }, info) {
     const userExists = db.users.some((user) => user.id === args.data.author);
@@ -101,6 +150,20 @@ const Mutation = {
 
     return deletedComments[0];
   },
+  updateComment(parent, args, { db }, info) {
+    const { id, data } = args;
+    const comment = db.comments.find((comment) => comment.id === id)
+
+    if(!comment) {
+      throw new Error("Comment not found");
+    }
+
+    if (typeof data.text === 'string') {
+      comment.text = data.text
+    }
+
+    return comment
+  }
 };
 
 export { Mutation as default };

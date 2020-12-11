@@ -1,21 +1,13 @@
-// Resolver Argument
-// Context: Is just a object with a set of properties that will be passed to every 
-// single resover method. It can be used to pass our database connection, things
-// like authentication token, user logged, etc...
-
 const Query = {
-  // Context whithout destructuring example
-  users(parent, args, context, info) {
+  users(parent, args, { db }, info) {
     if (!args.query) {
-      return context.db.users;
+      return db.users;
     }
 
-    return context.db.users.filter((user) => {
+    return db.users.filter((user) => {
       return user.name.toLowerCase().includes(args.query.toLowerCase());
     });
   },
-
-  // Context destructuring example
   posts(parent, args, { db }, info) {
     if (!args.query) {
       return db.posts;

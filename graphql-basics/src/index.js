@@ -15,8 +15,6 @@ const server = new GraphQLServer({
     Post,
     Comment
   },
-  // Passing db object for every single resolver in our application, regardless
-  // where these resolvers actually live.
   context: {
     db
   }

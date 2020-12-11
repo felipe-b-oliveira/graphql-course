@@ -4,7 +4,7 @@ const User = {
       return post.author === parent.id;
     });
   },
-  comments(parent, args, ctx, info) {
+  comments(parent, args, { db }, info) {
     return db.comments.filter((comment) => {
       return comment.author === parent.id;
     });
