@@ -5,28 +5,29 @@ const prisma = new Prisma({
   endpoint: 'http://localhost:4466'
 })
 
+// Integrate prisma in a Node Project (prisma-binding)
 // prisma.query, prisma.mutation, prisma.subscription. prisma.exists
 
-// const createPostForUser = async (authorId, data) => {
-//   const userExists = await prisma.exists.User({ id: authorId })
+const createPostForUser = async (authorId, data) => {
+  const userExists = await prisma.exists.User({ id: authorId })
 
-//   if(!userExists) {
-//     throw new Error('User not Found')
-//   }
+  if(!userExists) {
+    throw new Error('User not Found')
+  }
 
-//   const post = await prisma.mutation.createPost({
-//     data: {
-//       ...data,
-//       author: {
-//         connect: {
-//           id: authorId
-//         }
-//       }
-//     }
-//   }, '{ author { id name email posts { id title published } } }')
+  const post = await prisma.mutation.createPost({
+    data: {
+      ...data,
+      author: {
+        connect: {
+          id: authorId
+        }
+      }
+    }
+  }, '{ author { id name email posts { id title published } } }')
 
-//   return post.author
-// }
+  return post.author
+}
 
 // createPostForUser('ckiszwndy006309283s4vz2p1', {
 //   title: 'Great books to read',

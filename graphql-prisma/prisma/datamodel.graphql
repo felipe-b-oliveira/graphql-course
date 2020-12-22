@@ -1,10 +1,3 @@
-#SET_NULL (default) - CASCADE
-
-#Directive: Relation
-
-# SET_NULL: Don't delete author when a post is deleted
-# CASCADE: Delete comments associated with the deleted post
-
 type User {
   id: ID! @unique
   name: String!
