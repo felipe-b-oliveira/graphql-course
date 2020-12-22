@@ -38,27 +38,27 @@ const prisma = new Prisma({
 //   console.log(error.message)
 // })
 
-const updatePostForUser = async (postId, data) => {
-  const postExists = await prisma.exists.Post({ id: postId })
+// const updatePostForUser = async (postId, data) => {
+//   const postExists = await prisma.exists.Post({ id: postId })
 
-  if(!postExists) {
-    throw new Error('Post not found')
-  }
+//   if(!postExists) {
+//     throw new Error('Post not found')
+//   }
 
-  const post = await prisma.mutation.updatePost({
-    where: {
-      id: postId
-    },
-    data
-  }, '{ author { id name email posts { id title published } } }')
+//   const post = await prisma.mutation.updatePost({
+//     where: {
+//       id: postId
+//     },
+//     data
+//   }, '{ author { id name email posts { id title published } } }')
 
-  return post.author
-}
+//   return post.author
+// }
 
-updatePostForUser("ckiszgscc005o0a28rew06rup", { 
-  published: false 
-}).then((user) => {
-  console.log(JSON.stringify(user, undefined, 2))
-}).catch((error) => {
-  console.log(error.message)
-})
+// updatePostForUser("ckiszgscc005o0a28rew06rup", { 
+//   published: false 
+// }).then((user) => {
+//   console.log(JSON.stringify(user, undefined, 2))
+// }).catch((error) => {
+//   console.log(error.message)
+// })
