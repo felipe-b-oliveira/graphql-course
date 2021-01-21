@@ -1,0 +1,36 @@
+type User {
+  id: ID! @unique
+  username: String!
+  reviews: [Review!]! @relation(name: "ReviewToUser", onDelete: CASCADE)
+}
+
+type Book {
+  id: ID! @unique
+  title: String! @unique
+  genre: String
+  isbn: String! @unique
+  publisher: Publisher! @relation(name: "PublisherToBook", onDelete: SET_NULL)
+  author: Author! @relation(name: "AuthorToBook", onDelete: SET_NULL)
+  reviews: [Review!]! @relation(name: "ReviewToBook", onDelete: CASCADE)
+}
+
+type Publisher {
+  id: ID! @unique
+  name: String! @unique
+  city: String!
+  books: [Book!]! @relation(name: "PublisherToBook", onDelete: CASCADE)
+}
+
+type Author {
+  id: ID! @unique
+  name: String! @unique
+  books: [Book!]! @relation(name: "AuthorToBook", onDelete: CASCADE)
+}
+
+type Review {
+  id: ID! @unique
+  comment: String
+  rating: Int!
+  reviewAuthor: User! @relation(name: "ReviewToUser", onDelete: SET_NULL)
+  bookReview: Book! @relation(name: "ReviewToBook", onDelete: SET_NULL) 
+}
