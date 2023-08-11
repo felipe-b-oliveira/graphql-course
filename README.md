@@ -1,19 +1,19 @@
 # Modern GraphQL Course
-> Repositório de estudo do curso The Modern GraphQL Bootcamp
+> Study repository of course 'The Modern GraphQL Bootcamp by Andrew Mead'
 
-<h4 align="center"> 🚧  🚀 Em andamento...  🚧 </h4>
+<h4 align="center"> 🚧  🚀 Under development...  🚧 </h4>
 
 ## Tabela de conteúdos
 =================
 <!--ts-->
-   * [Tecnologias](#tecnologias)
-   * [Pré-Requisitos](#pré-requisitos)
-   * [Instalação](#instalação)
-      * [Pasta "graphql-basics"](#pasta-graphql-basics)
-      * [Pasta "graphql-prisma"](#pasta-graphql-prisma)
+   * [Technologies](#technologies)
+   * [Prerequisites](#prerequisites)
+   * [Installation](#installation)
+      * [Folder "graphql-basics"](#folder-graphql-basics)
+      * [Folder "graphql-prisma"](#folder-graphql-prisma)
 <!--te-->
 
-## Tecnologias
+## Technologies
 
 * [GraphQL](https://graphql.org/)
 * [PrismaORM](https://www.prisma.io/)
@@ -22,27 +22,27 @@
 * [Heroku](https://www.heroku.com/)
 * [NodeJS](https://nodejs.org/en/)
 
-## Pré-Requisitos
- Você vai precisar ter instalado em sua máquina as seguintes ferramentas:
+## Prerequisites
+ You will need to have the following tools installed on your machine:
   * [Git](https://git-scm.com)
   * [Node.js](https://nodejs.org/)
   * [Docker](https://docs.docker.com/engine/install/)
   * [Docker-Compose](https://docs.docker.com/compose/install/)
 
-## Instalação
- - Efetue o clone do repositório ```git clone https://github.com/felipe-b-oliveira/graphql-course.git```
+## Installation
+ - Clone the repository ```git clone https://github.com/felipe-b-oliveira/graphql-course.git```
 
-#### Pasta "graphql-basics"
- 1. Execute o comando ```npm install```
- 2. Dentro da pasta do projeto execute o comando ```npm run start``` para iniciar uma instância do GraphQL Playground
- 3. Execute as querys e as mutations de acordo com a documentação **docs** no canto direito do Playground
+#### Folder "graphql-basics"
+ 1. Run the command ```npm install```
+ 2. Inside the project folder run the command ```npm run start``` to start an new instance of GraphQL Playground.
+ 3. Run the queries and mutations accordinh with the docs **docs** on the right side of the GraphQL Playground.
 
-#### Pasta "graphql-prisma"
- 1. Execute o comando ```npm install```
- 2. Execute o comando ```npm install -g prisma@1.12.0```
- 3. Navegue até a pasta prisma e execute o comando ```docker-compose up -d```
-    * Para Linus execute ```sudo docker-compose up -d```
- 4. Execute o comando ```prisma deploy``` dentro da pasta _prisma_ ou _prisma-book-review_ de acordo com o projeto desejado.
-    * Acesse ```localhost:4466/default/default``` para o playground do projeto da pasta prisma
-    * Acesse ```http://localhost:4466/books/default``` para o playground do projeto da pasta prisma-book-review
+#### Folder "graphql-prisma"
+ 1. Run the command ```npm install```
+ 2. Run the command ```npm install -g prisma@1.12.0```
+ 3. Navigate to the prisma folder and run the command ```docker-compose up -d```
+    * For Linux users run ```sudo docker-compose up -d```
+ 4. Run teh command ```prisma deploy``` inside the _prisma_ or _prisma-book-review_ folder according with the project.
+    * Acess ```localhost:4466/default/default``` for the 'prisma' folder playground.
+    * Acess ```http://localhost:4466/books/default``` for the 'prisma-book-review' folder playground.
 
